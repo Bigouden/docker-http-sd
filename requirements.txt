@@ -1,0 +1,7 @@
+certifi
+charset-normalizer
+docker
+idna
+requests
+urllib3
+websocket
