@@ -1,5 +1,6 @@
 FROM alpine:3.16
 LABEL maintainer="Thomas GUIRRIEC <thomas@guirriec.fr>"
+ENV DOCKER_HOST="unix:///var/run/docker.sock"
 ENV HTTP_PORT="9999"
 ENV LOG_LEVEL="INFO"
 ENV LABEL_PREFIX="docker-multi-targets-service-discovery"

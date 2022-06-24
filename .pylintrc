@@ -1,4 +1,4 @@
 [MESSAGES CONTROL]
-disable=import-error,too-many-boolean-expressions,invalid-name
+disable=import-error,too-many-boolean-expressions,invalid-name,too-many-branches
 
 
