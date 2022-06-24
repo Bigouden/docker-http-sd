@@ -15,7 +15,7 @@ import docker
 
 # Global Variables
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
-LABEL_PREFIX = os.environ.get('LABEL_PREFIX', 'docker-multi-target-sd')
+LABEL_PREFIX = os.environ.get('LABEL_PREFIX', 'docker-multi-targets-service-discovery')
 LABEL_SUFFIX = {'port', 'network', 'targets'}
 TARGETS_DELIMITER = os.environ.get('TARGETS_DELIMITER', ',')
 VALID_TARGETS_DELIMITER = {',', ';', ':', '!', '?', '+', '|'}
@@ -53,7 +53,12 @@ if TARGETS_DELIMITER not in VALID_TARGETS_DELIMITER:
 def discover():
     ''' Discover & Filter Containers Labels '''
 
-    containers = docker.from_env().containers.list()
+    try:
+        containers = docker.from_env().containers.list()
+    except docker.errors.DockerException as exception:
+        logging.error(str(exception))
+        return 500, {'exception': str(exception)}
+
     res = []
 
     for container in containers:
@@ -111,22 +116,23 @@ def discover():
             res.append(dict(item))
             logging.info('SERVICE DISCOVERY: %s', dict(item))
 
-    return res
+    return 200, list(res)
 
 # Class Definition
 class GetHandler(BaseHTTPRequestHandler):
     '''  GET Handler Class '''
 
-    def _set_headers(self):
+    def _set_headers(self, code):
         ''' Manage HTTP Headers & HTTP Code '''
-        self.send_response(200)
+        self.send_response(code)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
 
     def do_GET(self):
         ''' Handle HTTP GET Request '''
-        self._set_headers()
-        data = json.dumps(list(discover()))
+        code, response = discover()
+        self._set_headers(code)
+        data = json.dumps(response)
         self.wfile.write(data.encode())
 
 # Main Program
