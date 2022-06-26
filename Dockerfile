@@ -3,12 +3,12 @@ LABEL maintainer="Thomas GUIRRIEC <thomas@guirriec.fr>"
 ENV DOCKER_HOST="unix:///var/run/docker.sock"
 ENV HTTP_PORT="9999"
 ENV LOG_LEVEL="INFO"
-ENV LABEL_PREFIX="docker-multi-targets-service-discovery"
-ENV SCRIPT="docker_multi_targets_service_discovery.py"
+ENV LABEL_PREFIX="docker-http-sd"
+ENV SCRIPT="docker_http_sd.py"
 ENV TARGETS_DELIMITER=","
 COPY requirements.txt /
 COPY entrypoint.sh /
-ENV VIRTUAL_ENV="/docker-multi-targets-service-discovery"
+ENV VIRTUAL_ENV="/docker-http-sd"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN apk add --no-cache --update \
          python3 \

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #coding: utf-8
 
-''' Docker Multi Targets Service Discovery For Prometheus '''
+''' Docker HTTP Service Discovery '''
 
 import os
 import logging
@@ -15,7 +15,7 @@ import docker
 
 # Global Variables
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO').upper()
-LABEL_PREFIX = os.environ.get('LABEL_PREFIX', 'docker-multi-targets-service-discovery')
+LABEL_PREFIX = os.environ.get('LABEL_PREFIX', 'docker-http-sd')
 LABEL_SUFFIX = {'port', 'network', 'targets'}
 TARGETS_DELIMITER = os.environ.get('TARGETS_DELIMITER', ',')
 VALID_TARGETS_DELIMITER = {',', ';', ':', '!', '?', '+', '|'}
