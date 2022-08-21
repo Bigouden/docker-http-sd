@@ -2,6 +2,7 @@ certifi
 charset-normalizer
 docker
 idna
+packaging
 requests
 urllib3
 websocket
