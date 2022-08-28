@@ -80,8 +80,8 @@ def discover():
                 service = label_split[1]
                 if label_split[2] == "targets":
                     services[service]['targets'] = re.sub(r'\s+', '',
-                                                          value).replace('"',
-                                                          '').split(TARGETS_DELIMITER)
+                                                          value).strip('"'
+                                                          ).split(TARGETS_DELIMITER)
                 if label_split[2] == "network":
                     services[service]['network'] = value
                 if label_split[2] == "port":
