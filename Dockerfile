@@ -6,10 +6,11 @@ ENV LOG_LEVEL="INFO"
 ENV LABEL_PREFIX="docker-http-sd"
 ENV SCRIPT="docker_http_sd.py"
 ENV TARGETS_DELIMITER=","
-ENV USERNAME="exporter"
+ENV USERNAME="docker-http-sd"
 ENV UID="1000"
 ENV GID="1000"
 COPY apk_packages /
+COPY pip_packages /
 ENV VIRTUAL_ENV="/docker-http-sd"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN xargs -a /apk_packages apk add --no-cache --update \
