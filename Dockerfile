@@ -1,4 +1,4 @@
-FROM alpine:3.16
+FROM alpine:3.17
 LABEL maintainer="Thomas GUIRRIEC <thomas@guirriec.fr>"
 ENV DOCKER_HOST="unix:///var/run/docker.sock"
 ENV HTTP_PORT="9999"
