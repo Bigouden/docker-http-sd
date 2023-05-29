@@ -17,7 +17,6 @@ include:
 variables:
   DOCKER_HTTP_SD_PORT: "9999"
   DOCKER_HTTP_SD_SCHEME: "http"
-  DOCKER_HOST: $DOCKER_HOST
   CI_DEBUG_SERVICES: "true"
 
 stages:
@@ -34,3 +33,5 @@ Docker HTTP Service Discovery:
   extends: .services
   script:
     - curl -f --connect-timeout 60 ${DOCKER_HTTP_SD_SCHEME}://docker-http-sd:${DOCKER_HTTP_SD_PORT}
+  variables:
+    DOCKER_HOST: $DOCKER_HOST
