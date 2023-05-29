@@ -16,6 +16,7 @@ include:
 
 variables:
   DOCKER_HTTP_SD_PORT: "9999"
+  DOCKER_HTTP_SD_SCHEME: "http"
 
 stages:
   - Quality
@@ -30,4 +31,4 @@ Docker HTTP Service Discovery:
   stage: Test
   extends: .services
   script:
-    - curl -f --connect-timeout 60 http://docker-http-sd:${DOCKER_HTTP_SD_PORT}
+    - curl -f --connect-timeout 60 ${DOCKER_HTTP_SD_SCHEME}://docker-http-sd:${DOCKER_HTTP_SD_PORT}
