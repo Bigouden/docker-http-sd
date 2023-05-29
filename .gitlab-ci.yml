@@ -17,6 +17,7 @@ include:
 variables:
   DOCKER_HTTP_SD_PORT: "9999"
   DOCKER_HTTP_SD_SCHEME: "http"
+  CI_DEBUG_SERVICES: "true"
 
 stages:
   - Quality
