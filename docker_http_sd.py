@@ -114,7 +114,7 @@ def discover():
         _["services"] = services
 
         for key, value in _["services"].items():
-            item = {}
+            item = defaultdict(dict)
             item["targets"] = value["targets"]
             item["labels"]["__meta_port"] = str(value["port"])
             item["labels"]["__meta_container"] = _["container"]
