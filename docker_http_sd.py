@@ -142,10 +142,14 @@ def discover():
 class GetHandler(BaseHTTPRequestHandler):
     """GET Handler Class"""
 
+    server_version = ""
+    sys_version = ""
+
     def _set_headers(self, code):
         """Manage HTTP Headers & HTTP Code"""
         self.send_response(code)
         self.send_header("Content-Type", "application/json")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
 
     def do_GET(self):

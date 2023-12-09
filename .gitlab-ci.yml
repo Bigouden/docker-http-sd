@@ -2,6 +2,8 @@
 include:
   - project: "Bigouden/gitlab-ci-templates"
     file: ".gitlab-ci-docker.yml"
+  - project: "Bigouden/gitlab-ci-templates"
+    file: ".gitlab-ci-owasp-zap.yml"
 
 .services:
   services:
@@ -14,10 +16,23 @@ include:
     GIT_STRATEGY: none
   dependencies: []
 
+.services_owasp_zap:
+  services:
+    - name: $CONTAINER_TEST_IMAGE
+      alias: target
+  image:
+    name: $CONTAINER_OWASP_ZAP_IMAGE
+    entrypoint: [""]
+  variables:
+    GIT_STRATEGY: none
+    DOCKER_HOST: $DOCKER_HOST
+  dependencies: []
+
 variables:
   DOCKER_HTTP_SD_PORT: "9999"
   DOCKER_HTTP_SD_SCHEME: "http"
   CI_DEBUG_SERVICES: "true"
+  OWASP_ZAP_TARGET: "${DOCKER_HTTP_SD_SCHEME}://target:${DOCKER_HTTP_SD_PORT}"
 
 stages:
   - Quality
