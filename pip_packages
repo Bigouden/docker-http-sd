@@ -1,8 +1,9 @@
 certifi
 charset-normalizer
 docker
-idna
-packaging
-requests
-urllib3
+idna>=3.7
+prometheus_client
+pytz
+requests>=2.32.0
+urllib3>=1.26.19
 websocket
